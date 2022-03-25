@@ -10,7 +10,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
-public class RockPaperScissors {
+public class PaperRockScissors {
 
     public static String findResult(String computerGuess, String userGuessLower) {
 
