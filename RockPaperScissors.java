@@ -1,4 +1,3 @@
-
 /**
  * play a game of rock, paper scissors against code
  * 
@@ -18,14 +17,14 @@ public class RockPaperScissors {
         // declaring variables
         String result = "";
 
-        if (computerGuess == userGuessLower) {
+        if (computerGuess.equals(userGuessLower)) {
             // give the user a choice if they want to repeat
             result = "Tie!";
-            if (computerGuess == "rock" && userGuessLower == "paper") {
+            if (computerGuess.equals("rock") && userGuessLower.equals("paper")) {
                 result = "You win!";
-            } else if (computerGuess == "paper" && userGuessLower == "scissors") {
+            } else if (computerGuess.equals("paper") && userGuessLower.equals("scissors")) {
                 result = "You win!";
-            } else if (computerGuess == "scissors" && userGuessLower == "rock") {
+            } else if (computerGuess.equals("scissors") && userGuessLower.equals("rock")) {
                 result = "You win!";
             } else {
                 result = "You lose...";
@@ -34,6 +33,7 @@ public class RockPaperScissors {
         // returning the result (string)
         return result;
     }
+
     public static void main(String[] args) {
         // declaring variables and generating random number
         int min = 1;
@@ -45,7 +45,6 @@ public class RockPaperScissors {
 
         Scanner myObj = new Scanner(System.in);
 
-
         // making the random number into a guess
         if (computerNum == 1) {
             computerGuess = "rock";
@@ -56,17 +55,18 @@ public class RockPaperScissors {
         }
 
         // if statement to make sure the user inputs the right thing
-        while (userGuessLower != "rock" || userGuessLower != "paper" || userGuessLower != "scissors") {
+        while (!userGuessLower.equals("rock") || !userGuessLower.equals("paper")
+                || !userGuessLower.equals("scissors")) {
             System.out.println("choose either rock, paper or scissors");
             userGuess = myObj.nextLine();
             userGuessLower = userGuess.toLowerCase();
 
-            if (userGuessLower == "rock" || userGuessLower == "paper" || userGuessLower == "scissors") {
+            System.out.println(userGuessLower);
+            if (userGuessLower.equals("rock") || userGuessLower.equals("paper") || userGuessLower.equals("scissors")) {
+                System.out.println("break");
                 break;
             }
-        } 
-
-        findResult(computerGuess, userGuessLower);
+        }
 
         String result = findResult(computerGuess, userGuessLower);
         System.out.println(result);
