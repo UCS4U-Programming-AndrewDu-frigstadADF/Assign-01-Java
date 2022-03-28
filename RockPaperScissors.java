@@ -10,6 +10,8 @@
 import java.util.Random;
 import java.util.Scanner;
 
+import javax.swing.text.html.StyleSheet;
+
 public class RockPaperScissors {
 
     public static String findResult(String computerGuess, String userGuessLower) {
@@ -20,15 +22,14 @@ public class RockPaperScissors {
         if (computerGuess.equals(userGuessLower)) {
             // give the user a choice if they want to repeat
             result = "Tie!";
-            if (computerGuess.equals("rock") && userGuessLower.equals("paper")) {
-                result = "You win!";
-            } else if (computerGuess.equals("paper") && userGuessLower.equals("scissors")) {
-                result = "You win!";
-            } else if (computerGuess.equals("scissors") && userGuessLower.equals("rock")) {
-                result = "You win!";
-            } else {
-                result = "You lose...";
-            }
+        } else if (computerGuess.equals("rock") && userGuessLower.equals("paper")) {
+            result = "You win!";
+        } else if (computerGuess.equals("paper") && userGuessLower.equals("scissors")) {
+            result = "You win!";
+        } else if (computerGuess.equals("scissors") && userGuessLower.equals("rock")) {
+            result = "You win!";
+        } else {
+            result = "You lose...";
         }
         // returning the result (string)
         return result;
@@ -38,37 +39,63 @@ public class RockPaperScissors {
         // declaring variables and generating random number
         int min = 1;
         int max = 3;
-        int computerNum = (int) Math.floor(Math.random() * (max - min + 1) + min);
         String computerGuess = "";
         String userGuess = "";
         String userGuessLower = "";
+        String userChoice = "yes";
+        String userChoiceLower = "yes";
 
         Scanner myObj = new Scanner(System.in);
 
-        // making the random number into a guess
-        if (computerNum == 1) {
-            computerGuess = "rock";
-        } else if (computerNum == 2) {
-            computerGuess = "paper";
-        } else {
-            computerGuess = "scissors";
-        }
+        while (userChoiceLower.equals("yes")) {
 
-        // if statement to make sure the user inputs the right thing
-        while (!userGuessLower.equals("rock") || !userGuessLower.equals("paper")
-                || !userGuessLower.equals("scissors")) {
-            System.out.println("choose either rock, paper or scissors");
-            userGuess = myObj.nextLine();
-            userGuessLower = userGuess.toLowerCase();
+            int computerNum = (int) Math.floor(Math.random() * (max - min + 1) + min);
 
-            System.out.println(userGuessLower);
-            if (userGuessLower.equals("rock") || userGuessLower.equals("paper") || userGuessLower.equals("scissors")) {
-                System.out.println("break");
-                break;
+            if (computerNum == 1) {
+                computerGuess = "rock";
+            } else if (computerNum == 2) {
+                computerGuess = "paper";
+            } else {
+                computerGuess = "scissors";
+            }
+
+            // if statement to make sure the user inputs the right thing
+            while (!userGuessLower.equals("rock") || !userGuessLower.equals("paper")
+                    || !userGuessLower.equals("scissors")) {
+                System.out.println("choose either rock, paper or scissors");
+                userGuess = myObj.nextLine();
+                userGuessLower = userGuess.toLowerCase();
+
+                System.out.println(userGuessLower);
+                if (userGuessLower.equals("rock") || userGuessLower.equals("paper")
+                        || userGuessLower.equals("scissors")) {
+                    break;
+                }
+            }
+
+            System.out.println("The computer guessed " + computerGuess);
+
+            String result = findResult(computerGuess, userGuessLower);
+            System.out.println(result);
+
+            // asking user if they want to play
+            System.out.println("Do you want to play?");
+            userChoice = myObj.nextLine();
+            userChoiceLower = userChoice.toLowerCase();
+            System.out.println(userChoiceLower);
+
+            // checking if user choice is valid
+            while (true) {
+                if (!userChoiceLower.equals("yes") || !userChoiceLower.equals("no")) {
+                    System.out.println("That is not a valid input, try again");
+
+                    System.out.println("Do you want to play?");
+                    userChoice = myObj.nextLine();
+                    userChoiceLower = userChoice.toLowerCase();
+                } else {
+                    System.out
+                }
             }
         }
-
-        String result = findResult(computerGuess, userGuessLower);
-        System.out.println(result);
     }
 }
