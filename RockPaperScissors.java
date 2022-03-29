@@ -66,7 +66,6 @@ public class RockPaperScissors {
                 userGuess = myObj.nextLine();
                 userGuessLower = userGuess.toLowerCase();
 
-                System.out.println(userGuessLower);
                 if (userGuessLower.equals("rock") || userGuessLower.equals("paper")
                         || userGuessLower.equals("scissors")) {
                     break;
@@ -82,19 +81,23 @@ public class RockPaperScissors {
             System.out.println("Do you want to play?");
             userChoice = myObj.nextLine();
             userChoiceLower = userChoice.toLowerCase();
-            System.out.println(userChoiceLower);
 
             // checking if user choice is valid
             while (true) {
-                if (!userChoiceLower.equals("yes") || !userChoiceLower.equals("no")) {
+                if (!userChoiceLower.equals("yes") && !userChoiceLower.equals("no")) {
                     System.out.println("That is not a valid input, try again");
 
                     System.out.println("Do you want to play?");
                     userChoice = myObj.nextLine();
                     userChoiceLower = userChoice.toLowerCase();
-                } else {
-                    System.out
+
+                    // run again if user inputs yes
+                } else if (userChoiceLower.equals("yes")) {
+                    break;
                 }
+                // ends code if user choice is no
+                System.out.print("Thanks for playing!");
+                break;
             }
         }
     }
